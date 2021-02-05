@@ -1,6 +1,6 @@
 #!/usr/bin/env nextflow
 
-input = Channel.fromPath("$projectDir/input.txt").splitText()
+input = Channel.fromPath("$baseDir/input.txt").splitText()
 
 process decode {
 
