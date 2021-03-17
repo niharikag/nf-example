@@ -1,14 +1,14 @@
-#!/usr/bin/env nextflow
+nextflow.enable.dsl = 2
 
 input = Channel.fromPath("$baseDir/input.txt").splitText()
 
 process decode {
 
     input:
-    val STR from input
+    val STR 
 
     output:
-    stdout ch_decoded
+    stdout
 
     script:
     """
@@ -16,4 +16,6 @@ process decode {
     """
 }
 
-ch_decoded.toSortedList().flatten().subscribe { print it }
+workflow{
+    decode(input)|toSortedList()|flatten()|view()
+}
